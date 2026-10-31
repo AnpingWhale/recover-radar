@@ -1,0 +1,6 @@
+// Copy to Local.xcconfig. This file is safe to commit; Local.xcconfig is not.
+// Both targets must use the same registered App Group and development team.
+DEVELOPMENT_TEAM = YOUR_TEAM_ID
+APP_BUNDLE_IDENTIFIER = your.reverse.domain.RecoverRadar
+WIDGET_BUNDLE_IDENTIFIER = your.reverse.domain.RecoverRadar.Widget
+APP_GROUP_IDENTIFIER = group.your.reverse.domain.RecoverRadar

@@ -1,0 +1,17 @@
+// Public defaults. Override identifiers and your Apple team in Local.xcconfig.
+MACOSX_DEPLOYMENT_TARGET = 14.0
+SWIFT_VERSION = 6.0
+SWIFT_STRICT_CONCURRENCY = complete
+CLANG_ENABLE_MODULES = YES
+CODE_SIGN_STYLE = Automatic
+DEVELOPMENT_TEAM =
+APP_BUNDLE_IDENTIFIER = org.example.RecoverRadar
+WIDGET_BUNDLE_IDENTIFIER = org.example.RecoverRadar.Widget
+APP_GROUP_IDENTIFIER = group.org.example.RecoverRadar
+MARKETING_VERSION = 0.2.0
+CURRENT_PROJECT_VERSION = 2
+GENERATE_INFOPLIST_FILE = NO
+ENABLE_HARDENED_RUNTIME = YES
+ENABLE_USER_SCRIPT_SANDBOXING = YES
+
+#include? "Local.xcconfig"

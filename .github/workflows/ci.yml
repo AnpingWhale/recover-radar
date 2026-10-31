@@ -1,0 +1,36 @@
+name: Native macOS checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Core and integration tests
+        run: ./Scripts/test.sh
+      - name: Build app and embedded widget without signing
+        run: >-
+          xcodebuild
+          -project RecoverRadar.xcodeproj
+          -scheme RecoverRadar
+          -configuration Release
+          -destination 'generic/platform=macOS'
+          -derivedDataPath build/CI
+          CODE_SIGNING_ALLOWED=NO
+          build
+      - name: Build optimized standalone preview
+        run: ./Scripts/build-preview.sh release
