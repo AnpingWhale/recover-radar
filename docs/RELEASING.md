@@ -26,6 +26,10 @@ shasum -a 256 -c SHA256SUMS.txt
 
 发布者应先确认 GitHub 账号为 AnpingWhale，等待 CI 通过，再将版本标签推送到对应提交，并使用 GitHub Release 的 **Pre-release** 标记发布文件及校验和。版本号同时维护于 `Configuration/Shared.xcconfig`、`Scripts/build-preview.sh` 与打包脚本；预发布后缀用于标签和文件名，应用内部使用 `0.2.0` / build `2`。
 
+## 完整 app + Widget 构建
+
+GitHub Actions 使用完整 Xcode 执行 Release 编译，确认 `.app/Contents/PlugIns/RecoverRadarWidget.appex` 存在后，上传 `RecoverRadar-with-Widget-unsigned` 构建产物，保留 14 天。它确实包含 Widget 扩展，但未签名、未获 App Group 授权，不应当作普通用户安装包。可在仓库 Actions 的成功运行页下载，用于开发者检查工程输出。
+
 ## 正式桌面发行的必要条件
 
 1. 使用完整 Xcode，按 [开发指南](DEVELOPMENT.md) 设置所有者的 Team、Bundle ID 与已获授权的 App Group。

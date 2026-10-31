@@ -14,4 +14,4 @@
 
 `build-preview.sh` 生成的是 ad-hoc 签名、未沙盒化的开发预览；它使用独立 Bundle ID、Keychain service 及私有缓存，没有共享 App Group 或 Widget。显式预览构建将凭证存入本机 login Keychain，正式版使用 Data Protection Keychain；没有失败后自动降级或明文凭证文件。这不等同于正式发行包的隔离和签名验收。正式工程启用 App Sandbox 与 Hardened Runtime；正式 Keychain、浏览器授权、签名及公证仍需在发行前验收。
 
-发布前需由所有者补充私密安全报告渠道。此前不要在公开 Issue 中附凭证、真实完整健康数据或可利用的安全细节；联系仓库所有者安排私下处理。若凭证已经泄露，应通过 COROS 官方渠道撤销授权。
+请通过 [GitHub 私密漏洞报告](https://github.com/AnpingWhale/recover-radar/security/advisories/new) 联系维护者。不要在公开 Issue 中附凭证、真实完整健康数据或可利用的安全细节。若凭证已经泄露，应通过 COROS 官方渠道撤销授权。

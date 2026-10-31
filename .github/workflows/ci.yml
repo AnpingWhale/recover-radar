@@ -32,5 +32,16 @@ jobs:
           -derivedDataPath build/CI
           CODE_SIGNING_ALLOWED=NO
           build
+      - name: Package unsigned app with embedded Widget for development
+        run: |
+          test -d build/CI/Build/Products/Release/RecoverRadar.app/Contents/PlugIns/RecoverRadarWidget.appex
+          mkdir -p build/artifacts
+          ditto -c -k --sequesterRsrc --keepParent build/CI/Build/Products/Release/RecoverRadar.app build/artifacts/RecoverRadar-with-Widget-unsigned.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RecoverRadar-with-Widget-unsigned
+          path: build/artifacts/RecoverRadar-with-Widget-unsigned.zip
+          retention-days: 14
+          if-no-files-found: error
       - name: Build optimized standalone preview
         run: ./Scripts/build-preview.sh release
