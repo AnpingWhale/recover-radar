@@ -131,9 +131,9 @@ struct ContentView: View {
     private var preferences: some View {
         VStack(alignment: .leading, spacing: 8) {
             Toggle("在菜单栏显示，方便保持应用运行", isOn: Binding(
-                get: { model.showMenuBar }, set: model.setShowMenuBar
+                get: { model.showMenuBar }, set: { model.setShowMenuBar($0) }
             ))
-            Toggle("登录 Mac 时启动", isOn: Binding(get: { model.launchAtLogin }, set: model.setLaunchAtLogin))
+            Toggle("登录 Mac 时启动", isOn: Binding(get: { model.launchAtLogin }, set: { model.setLaunchAtLogin($0) }))
                 .disabled(model.isPreviewBuild)
         }
         .font(.callout)

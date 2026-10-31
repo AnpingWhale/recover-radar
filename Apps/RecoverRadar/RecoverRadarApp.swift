@@ -19,7 +19,7 @@ struct RecoverRadarApp: App {
         .windowResizability(.contentSize)
 
         MenuBarExtra("Recovery Radar", systemImage: "waveform.path.ecg", isInserted: Binding(
-            get: { model.showMenuBar }, set: model.setShowMenuBar
+            get: { model.showMenuBar }, set: { model.setShowMenuBar($0) }
         )) {
             MenuContent(model: model)
         }
