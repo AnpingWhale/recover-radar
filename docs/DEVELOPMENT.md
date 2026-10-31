@@ -64,7 +64,7 @@ xcodebuild -project RecoverRadar.xcodeproj \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-GitHub Actions 执行 Swift 测试及无签名的 app / extension 构建；工作流已写入，尚无远端 CI 运行记录。
+GitHub Actions 执行 Swift 测试及无签名的 app / extension Release 构建。[2026-10-31 的通过记录](https://github.com/AnpingWhale/recover-radar/actions/runs/41183691448) 验证了 85 项合成测试、arm64 / x86_64 的 app 与嵌入 Widget 编译、打包，以及独立预览的优化构建。签名、桌面安装与 Intel 实机运行仍未验收。
 
 真实账号验收应覆盖首次注册、浏览器取消、登录成功、令牌轮换、断开后本地清理；仅使用本人账号，不记录令牌或完整健康响应。核对五轴原值、N/30 天、部分失败保留原时间、无当日数据、跨账号日、休眠与离线恢复。App 运行期间约每小时同步，回到窗口时按 15 分钟间隔检查，手动同步立即执行；应用退出后不联网。
 

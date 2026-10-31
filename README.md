@@ -14,7 +14,7 @@
 
 *布局参考图，数据为合成演示。不透明离屏渲染不展示原生 Liquid Glass；实际玻璃效果请在 macOS 26+ 打开应用的“小组件效果”画廊。*
 
-发布内容、构建方式和正式发行的剩余条件见 [发布指南](docs/RELEASING.md)。
+Release 中另有带 `with-Widget-UNSIGNED-universal` 的开发包，包含真正的主应用和 Widget 扩展（arm64 + x86_64）；它未签名、未配置授权 App Group，**不能当作普通用户安装包**。完整工程已通过 [Xcode Release 构建与 85 项测试](https://github.com/AnpingWhale/recover-radar/actions/runs/41183691448)。发布内容、构建方式和正式发行的剩余条件见 [发布指南](docs/RELEASING.md)。
 
 ## 环境与运行
 

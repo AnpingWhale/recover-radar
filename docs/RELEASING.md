@@ -28,7 +28,7 @@ shasum -a 256 -c SHA256SUMS.txt
 
 ## 完整 app + Widget 构建
 
-GitHub Actions 使用完整 Xcode 执行 Release 编译，确认 `.app/Contents/PlugIns/RecoverRadarWidget.appex` 存在后，上传 `RecoverRadar-with-Widget-unsigned` 构建产物，保留 14 天。它确实包含 Widget 扩展，但未签名、未获 App Group 授权，不应当作普通用户安装包。可在仓库 Actions 的成功运行页下载，用于开发者检查工程输出。
+GitHub Actions 使用完整 Xcode 执行 Release 编译，确认 `.app/Contents/PlugIns/RecoverRadarWidget.appex` 存在后，上传 `RecoverRadar-with-Widget-unsigned` 构建产物，保留 14 天。它确实包含 Widget 扩展，但未签名、未获 App Group 授权，不应当作普通用户安装包。首个 Release 也永久保留了该构建，文件名带 `with-Widget-UNSIGNED-universal`；从 CI 下载后附加 MIT 许可证与开发说明重新压缩，二进制未修改，来源提交为 `92ffb086e824d2a1f6d428422b6ee2abc00ca485`，SHA-256 收录于发布校验和。可在仓库 Actions 的成功运行页下载，用于开发者检查工程输出。
 
 ## 正式桌面发行的必要条件
 
@@ -36,6 +36,14 @@ GitHub Actions 使用完整 Xcode 执行 Release 编译，确认 `.app/Contents/
 2. 构建 Release archive，使用 Developer ID Application 证书及匹配的 provisioning 签名 app 和嵌入扩展，保留 Hardened Runtime 与 Sandbox。
 3. 验证实际授权、回调、Keychain、共享容器读写、离线与过期状态，并在干净的 Mac 上安装中号和大号 Widget。
 4. 使用 Apple `notarytool` 提交最终分发包并等待 Accepted；staple 票据，再验证签名、公证和 Gatekeeper。公证凭证只保存在发布者的 Keychain 或受限 CI secrets。
-5. 在支持的 macOS 版本检查外观与辅助功能后，才能去掉预发布标记。若宣称支持 Intel，须另行构建并验收对应架构；本次本地包只验证 arm64。
+5. 在支持的 macOS 版本检查外观与辅助功能后，才能去掉预发布标记。本次 CI 已构建 arm64 与 x86_64；若宣称支持 Intel，还需 Intel 实机验收。本地预览包只验证 arm64。
 
 当前机器没有完整 Xcode 或有效代码签名身份，无法完成上述正式发行步骤。GitHub CI 检查完整 app / extension 的无签名编译，不代表签名、COROS 真实授权或 Widget 安装已通过。
+
+## 本次发布验证
+
+- [GitHub CI](https://github.com/AnpingWhale/recover-radar/actions/runs/41183691448)：Xcode 26.6，85 项测试、完整双架构 app / Widget Release 编译及独立预览构建通过。
+- 本机：Release 优化预览启动与画廊、菜单栏开关往返和恢复响应检查通过；DMG 完整性、ad-hoc 签名完整性、ZIP 内容及 SHA-256 校验通过。
+- 未完成：Developer ID 签名、公证、App Group 授权、真实桌面 Widget 安装和完整账号授权回归。
+
+Apple 官方说明：[Developer ID](https://developer.apple.com/developer-id/) · [软件公证](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)。
